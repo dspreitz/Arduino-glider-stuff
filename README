@@ -1,0 +1,7 @@
+This project contains stuff, which can be useful to program an Adruino MEGA with glider applications.
+
+All the development I did is based on a Arduino Mega.
+I added a temperature & humidity sensor (HYT) to measure both values in flight. My plan is to gather some inflight data correlated with precise timing and GPS information.
+Based on this data I want to do some statistical analysis about temperature and humidity distributions within thermals.
+
+To achieve this, I interfaced a Flarm onto the Arduino and rewrote an existing NMEA lib (see lib/nmea) to understand the NMEA sentences provided by flare. 
