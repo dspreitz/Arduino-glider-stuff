@@ -1,13 +1,13 @@
 This project contains stuff, which can be useful to program an Adruino MEGA with glider applications.
 
 Why Arduino?
-Because it offers high level programming in C++ and has lots of libs already available.
+Because it offers high level uC programming in C++ and has lots of libs already available.
 
 Why Arduino Mega?
-Because I still had one in my bottom drawer.
+Because I still had one in my bottom drawer. http://arduino.cc/en/Main/ArduinoBoardMega2560
 
 Project aim:
-Connect different sensors to the Arduino and do in flight measurement. The measured data will be stored on a SD Card shield.
+Connect different sensors to the Arduino and do in flight measurement and data processing. The measured data will be stored on a SD Card shield.
 
 Sensors:
 - Temperature und Humidity sensor (HYT)
@@ -25,9 +25,12 @@ PFLAU, GPRMC, GPGGA and PGRMZ
 Further details about these statements can be found under:
 http://www.flarm.com/support/manual/FLARM_DataportManual_v5.00E.pdf
 
+- Pressure sensors
+I ordered two barometric pressure sensors (http://www.sparkfun.com/products/9694). Still waiting to get them. I plan to make dynamic and static pressure available to the Arduino with these breakouts via I2C.
+
 
 Data processing:
-All data is processed and written to a terminal, as my SD shield didn't arrive yet. Ultimately, I plan to write the measurements onto a SD Card.
+All data is processed and written to a terminal (serial), as my SD shield didn't arrive yet. Ultimately, I plan to write the measurements onto a SD Card.
 
 Based on this data I want to do some statistical analysis about temperature and humidity distributions within thermals.
 
