@@ -4,18 +4,21 @@
 
 /*
  Programm to measure and transmit Humidity and Temperature 
- via HYT228 on request via Serial Communication.
+ via HYT271 on request via Serial Communication.
  
  Not optimized for high speed measurement. A minimum dely 
  of 100 ms is currently hard coded in the getData() function
  
  TODO:
- - Add functionalty for high speed measurement. The HYT221
+ - Add functionalty for high speed measurement. The HYT271
  indicates if a new measurement is ready via the status/stall bit
- see documentation of HYT221
+ see documentation of HYT271
  - Do not use a global variable for temperature and humidty. Use
  a function with an array to return the data.
  - Think on reducing number of variables used.
+ 
+ Sensor documentation
+ http://www.ist-ag.ch/eh/ist-ag/resource.nsf/imgref/Download_EN_HYT271_201109.pdf/$FILE/EN_HYT271_201109.pdf
  
  */
 
@@ -71,8 +74,8 @@ NMEA gps(ALL);
 //setup
 void setup(){
   // Setup Serial connection
-  Serial.begin(19200);
-  Serial1.begin(19200);
+  Serial.begin(19200);      // Serial connection to PC for debugging
+  Serial1.begin(19200);    // Serial connection to Flarm
   delay(1000);
   Wire.begin();             // join I2C bus
 
