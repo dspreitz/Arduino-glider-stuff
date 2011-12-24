@@ -1,0 +1,8 @@
+This library was derived from http://www.maartenlamers.com/nmea/
+
+The NMEA library for Wiring by Maarten Lamers is licensed under a Creative Commons Attribution-Share Alike 3.0 Netherlands License. Basically, you can share this work and make derivative works from it, as long as you attribute this library to my name and you distribute the resulting work under a similar license.
+
+I took the library and extended it to understand GPS information provided by FLARM. THE PFLAU sentence is not implemented, however there are provisions for that.
+
+Oh, and remember, this product come with absolutely no warranty whatsoever!
+
