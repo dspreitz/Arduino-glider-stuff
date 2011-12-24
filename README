@@ -7,7 +7,7 @@ Why Arduino Mega?
 Because I still had one in my bottom drawer. http://arduino.cc/en/Main/ArduinoBoardMega2560
 
 Project aim:
-Connect different sensors to the Arduino and do in flight measurement and data processing. The measured data will be stored on a SD Card shield.
+Connect different sensors to the Arduino and do in flight measurement and data processing in a glider. The measured data will be stored on a SD Card shield.
 
 Sensors:
 - Temperature und Humidity sensor (HYT)
@@ -33,4 +33,6 @@ Data processing:
 All data is processed and written to a terminal (serial), as my SD shield didn't arrive yet. Ultimately, I plan to write the measurements onto a SD Card.
 
 Based on this data I want to do some statistical analysis about temperature and humidity distributions within thermals.
+
+Unless otherwise stated I license all information contained in this project under the GPLv3 (http://www.gnu.org/licenses/gpl-3.0.html). The NMEA lib has a different flavor of license.
 
