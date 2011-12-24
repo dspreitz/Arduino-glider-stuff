@@ -1,7 +1,33 @@
 This project contains stuff, which can be useful to program an Adruino MEGA with glider applications.
 
-All the development I did is based on a Arduino Mega.
-I added a temperature & humidity sensor (HYT) to measure both values in flight. My plan is to gather some inflight data correlated with precise timing and GPS information.
+Why Arduino?
+Because it offers high level programming in C++ and has lots of libs already available.
+
+Why Arduino Mega?
+Because I still had one in my bottom drawer.
+
+Project aim:
+Connect different sensors to the Arduino and do in flight measurement. The measured data will be stored on a SD Card shield.
+
+Sensors:
+- Temperature und Humidity sensor (HYT)
+http://www.ist-ag.ch/eh/ist-ag/resource.nsf/imgref/Download_EN_HYT271_201109.pdf/$FILE/EN_HYT271_201109.pdf
+This sensor is connected to the Arduino via I2C (pins?). It is powered with +5V by the Arduino (pins?)
+
+- Flarm
+Flarm outputs NMEA signals. These signals are based on a 12V TTL signal, which has to be shifted to 5V TTL signal. I am using following level shifter http://www.sparkfun.com/products/449 to convert the signal for Arduino input. The level shifter can be powered by the Flarm +3V line.
+See chapter 8 of the Flarm installation manual (http://www.flarm.com/support/manual/FLARM_InstallationManual_v5.00E.pdf) for details about the Flarm wiring and which wires provide TX/RX signals.
+The shifted Flarm signal is by the Arduino via UART.
+
+Flarm sends following NMEA sentences:
+PFLAU, GPRMC, GPGGA and PGRMZ
+
+Further details about these statements can be found under:
+http://www.flarm.com/support/manual/FLARM_DataportManual_v5.00E.pdf
+
+
+Data processing:
+All data is processed and written to a terminal, as my SD shield didn't arrive yet. Ultimately, I plan to write the measurements onto a SD Card.
+
 Based on this data I want to do some statistical analysis about temperature and humidity distributions within thermals.
 
-To achieve this, I interfaced a Flarm onto the Arduino and rewrote an existing NMEA lib (see lib/nmea) to understand the NMEA sentences provided by flare. 
