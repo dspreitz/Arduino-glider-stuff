@@ -4,20 +4,20 @@ Why Arduino?
 Because it offers high level uC programming in C++ and has lots of libs already available.
 
 Why Arduino Mega?
-Because I still had one in my bottom drawer. http://arduino.cc/en/Main/ArduinoBoardMega2560
+Because I still had one in my bottom drawer. http://arduino.cc/en/Main/ArduinoBoardMega1280
 
 Project aim:
-Connect different sensors to the Arduino and do in flight measurement and data processing in a glider. The measured data will be stored on a SD Card shield.
+Connect different sensors to the Arduino and do in flight measurement and data processing in a glider. The measured data will be stored on a microSD card shield.
 
 Sensors:
 - Temperature und Humidity sensor (HYT)
 http://www.ist-ag.ch/eh/ist-ag/resource.nsf/imgref/Download_EN_HYT271_201109.pdf/$FILE/EN_HYT271_201109.pdf
-This sensor is connected to the Arduino via I2C (pins?). It is powered with +5V by the Arduino (pins?)
+This sensor is connected to the Arduino via I2C (SDA=Pin 20, SCL=Pin21). It is powered with +5V by the Arduino (PWR=5V, GND=GND).
 
 - Flarm
 Flarm outputs NMEA signals. These signals are based on a 12V TTL signal, which has to be shifted to 5V TTL signal. I am using following level shifter http://www.sparkfun.com/products/449 to convert the signal for Arduino input. The level shifter can be powered by the Flarm +3V line.
 See chapter 8 of the Flarm installation manual (http://www.flarm.com/support/manual/FLARM_InstallationManual_v5.00E.pdf) for details about the Flarm wiring and which wires provide TX/RX signals.
-The shifted Flarm signal is by the Arduino via UART.
+The shifted Flarm signal is by the Arduino via UART on TX1/Pin 18 and RX1/Pin19
 
 Flarm sends following NMEA sentences:
 PFLAU, GPRMC, GPGGA and PGRMZ
@@ -29,8 +29,24 @@ http://www.flarm.com/support/manual/FLARM_DataportManual_v5.00E.pdf
 I ordered two barometric pressure sensors (http://www.sparkfun.com/products/9694). Still waiting to get them. I plan to make dynamic and static pressure available to the Arduino with these breakouts via I2C.
 
 
+- SD card shield
+I am using an SD card shield (http://www.sparkfun.com/products/9802) to store measured information in a file on a SD card.
+Unfortunately, the SPI communication wires to the SD card shield have to be rerouted to work with the Arduino Mega board:
+On the shield cut pins 10-13 off. Then establish following wiring:
+SD shield --> Arduino Pin
+10 --> 53
+11 --> 51
+12 --> 50
+13 --> 52 
+Reason for this is, that the SPI communication pins are in different locations on different Arduino boards.
+
+
 Data processing:
-All data is processed and written to a terminal (serial), as my SD shield didn't arrive yet. Ultimately, I plan to write the measurements onto a SD Card.
+All data is processed and written to a terminal (serial) and on the SD card. The data is stores in a file called DATALOG.TXT.
+Here is one example line of the file: Time UTC, Lat., Long., GPS Alt in m, Pressure alt in ft., rel. humidity, Temp in C 
+175828 48.742138 11.445361  364  1192  65.36 22.29 
+
+The file is automatically appended with new entries.
 
 Based on this data I want to do some statistical analysis about temperature and humidity distributions within thermals.
 
